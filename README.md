@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). And the API from [Sutanlab](https://github.com/sutanlab/quran-api). Demo live [here](https://fr-quran.netlify.app/).
 
 ## Available Scripts
 
