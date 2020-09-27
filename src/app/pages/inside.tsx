@@ -20,7 +20,6 @@ export default function UIInside() {
         async function getItem(itemId: number) {
             const results = await axios.get('https://api.quran.sutanlab.id/surah/' + itemId);
             setItem(results.data);
-            console.log(results.data);
         }
         let isMounted: boolean = true;
         if (isMounted) {
