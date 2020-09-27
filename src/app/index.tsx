@@ -19,7 +19,7 @@ export default function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/surah/:Id">
+                <Route path="/surah/:itemId">
                     <UIInside />
                 </Route>
                 <Route path="/">

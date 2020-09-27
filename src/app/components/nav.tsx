@@ -1,5 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import iconSearch from '../images/icon-search.svg';
+
+/**
+ * Import component.
+ */
+import UISidebarSearch from './sidebar-search';
 
 /**
  * Define stylesheet.
@@ -27,16 +34,66 @@ const Container = styled.div`
 const SiteName = styled.h3`
     margin: 0;
     font-size: 1.8rem;
+    a {
+        color: #333;
+        text-decoration: none;
+    }
+`;
+const SearchForm = styled.div`
+    flex-grow: 1;
+    align-items: flex-end;
+`;
+const SearchGroup = styled.button`
+    position: relative;
+    padding: 8px;
+    float: right;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+`;
+const SearchIcon = styled.img`
+    display: block;
+    width: 24px;
 `;
 
-export default function UINav() {
+/**
+ * Define component.
+ */
+interface UIProps {
+    isHome: boolean;
+}
+export default function UINav(props: UIProps) {
+    const [active, setActive] = useState<any>(false);
+
+    // handle search button
+    function handleSearch(e: any): void {
+        e.preventDefault();
+        if (active) {
+            document.body.style.overflow = 'initial';
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
+        setActive(!active);
+    };
+
     return (
-        <UI>
-            <Nav>
-                <Container>
-                    <SiteName>Quran</SiteName>
-                </Container>
-            </Nav>
-        </UI>
+        <>
+            <UI>
+                <Nav>
+                    <Container>
+                        <SiteName>
+                            <Link to="/">Quran</Link>
+                        </SiteName>
+                        {props.isHome ? null : <SearchForm>
+                            <SearchGroup onClick={(e: any) => handleSearch(e)}>
+                                <SearchIcon src={iconSearch} />
+                            </SearchGroup>
+                        </SearchForm>}
+                    </Container>
+                </Nav>
+            </UI>
+            <UISidebarSearch isOpen={active} handleSearch={handleSearch} />
+        </>
     );
 }

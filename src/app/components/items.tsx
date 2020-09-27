@@ -45,6 +45,7 @@ const ItemCard = styled.div`
     position: relative;
 `;
 const ItemNumber = styled.div`
+    flex: none;
     width: 40px;
     height: 40px;
     font-size: 1.6rem;
@@ -56,7 +57,7 @@ const ItemNumber = styled.div`
     border-radius: 40px;
 `;
 const ItemDetail = styled.div`
-    padding-left: 12px;
+    padding: 0 16px 0 12px;
 `;
 const ItemTitle = styled.h3`
     margin: 0;
@@ -67,16 +68,22 @@ const ItemTitle = styled.h3`
     }
 `;
 const ItemMeta = styled.span`
-    display: block;
+    display: -webkit-box;
     margin: 1px 0 0;
     font-size: 1.35rem;
     color: #777;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 `;
 const ItemArab = styled.div`
     flex-grow: 1;
     font-size: 1.7rem;
     font-weight: 500;
     text-align: right;
+    white-space: nowrap;
     @media (min-width: 640px) {
         font-size: 1.8rem;
     }
@@ -147,7 +154,7 @@ function UIItem(props: any) {
                         {item.name.transliteration.id}
                     </ItemTitle>
                     <ItemMeta>
-                        {item.revelation.id}, {item.numberOfVerses} Ayat
+                        {item.name.translation.id}, {item.numberOfVerses} Ayat
                     </ItemMeta>
                 </ItemDetail>
                 <ItemArab>

@@ -60,7 +60,7 @@ export default class UIIndex extends Component<{}, UIState> {
         const { items, find }: any = this.state;
         return (
             <>
-                <UINav />
+                <UINav isHome={true} />
                 <UISearch handleFindItem={this.handleFindItem.bind(this)} />
                 <UIItems find={find} items={items} />
                 <UIFooter />
