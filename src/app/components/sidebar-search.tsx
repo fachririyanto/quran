@@ -193,7 +193,7 @@ export default class UISidebarSearch extends Component<any, UIState> {
                         <SearchIcon src={iconSearch} />
                     </SearchGroup>
                 </Header>
-                <UISearchResults items={this.state.items} find={this.state.find} />
+                <UISearchResults items={this.state.items} find={this.state.find} {...this.props} />
             </UI>
         );
     }
@@ -204,7 +204,7 @@ function UISearchResults(props: any) {
     const UIList: any = items.filter((item: any) => {
         return find === '' ? item : item.name.transliteration.id.toLowerCase().includes(find.toLowerCase())
     }).map((item: any) => {
-        return <UIItem key={item.number} item={item} />
+        return <UIItem key={item.number} item={item} {...props} />
     });
     return (
         <>
@@ -242,7 +242,7 @@ function UIItem(props: any) {
                     {item.name.short}
                 </ItemArab>
                 <ItemLink>
-                    <Link to={"/surah/" + item.number}>Read More</Link>
+                    <Link to={"/surah/" + item.number} onClick={(e: any) => props.handleSearch(e)}>Read More</Link>
                 </ItemLink>
             </ItemCard>
         </Item>

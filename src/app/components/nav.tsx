@@ -68,7 +68,6 @@ export default function UINav(props: UIProps) {
 
     // handle search button
     function handleSearch(e: any): void {
-        e.preventDefault();
         if (active) {
             document.body.style.overflow = 'initial';
         } else {
