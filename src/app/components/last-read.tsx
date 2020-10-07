@@ -8,10 +8,14 @@ import { Link } from 'react-router-dom';
 const UI = styled.section`
     position: relative;
     z-index: 2;
-    margin-top: -24px;
-    padding: 0 0 40px;
+    margin-top: 16px;
+    padding: 0 0 16px;
     color: #777;
     text-align: center;
+    @media (min-width: 680px) {
+        margin-top: -24px;
+        padding: 0 0 40px;
+    }
 `;
 const Container = styled.div`
     padding: 0 20px;
