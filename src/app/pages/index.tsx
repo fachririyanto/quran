@@ -49,6 +49,7 @@ export default class UIIndex extends Component<{}, UIState> {
             });
         }
         window.scrollTo(0, 0);
+        document.title = 'Digital Quran';
     }
 
     /**

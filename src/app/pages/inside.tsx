@@ -85,6 +85,15 @@ export default function UIInside() {
     }, [item, itemId]);
 
     /**
+     * Change document title.
+     */
+    useEffect(() => {
+        if (item) {
+            document.title = item.data.name.transliteration.id + ' - Digital Quran';
+        }
+    }, [item]);
+
+    /**
      * Render layout.
      */
     return (
