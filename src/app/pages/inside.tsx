@@ -20,13 +20,69 @@ export default function UIInside() {
         async function getItem(itemId: number) {
             const results = await axios.get('https://api.quran.sutanlab.id/surah/' + itemId);
             setItem(results.data);
+            localStorage.setItem('quran_last_read', JSON.stringify({
+                surah: results.data,
+                position: 0
+            }));
         }
         let isMounted: boolean = true;
         if (isMounted) {
-            getItem(itemId);
+            var lastRead = localStorage.getItem('quran_last_read');
+            if (lastRead) {
+                const { surah }: any = JSON.parse(lastRead);
+                if (surah.data.number === parseInt(itemId)) {
+                    setItem(surah);
+                } else {
+                    getItem(itemId);
+                }
+            } else {
+                getItem(itemId);
+            }
         }
-        return () => { isMounted = false };
+        return () => {
+            isMounted = false;
+        };
     }, [itemId]);
+
+    /**
+     * Tracking scroll position.
+     */
+    useEffect(() => {
+        let scrollId: number;
+        function handleScroll(e: any) {
+            localStorage.setItem('quran_last_read', JSON.stringify({
+                surah: item,
+                position: e.target.documentElement.scrollTop
+            }));
+        }
+        function isFunction(functionToCheck: any) {
+            return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+        }
+        function debounce(method: any, delay: number) {
+            clearTimeout(scrollId);
+            scrollId = setTimeout(() => {
+                if (isFunction(method)) {
+                    method();
+                }
+            }, delay);
+        }
+        function handleScrollWrapper(e: any) {
+            debounce(handleScroll(e), 300);
+        }
+        if (item) {
+            window.addEventListener('scroll', handleScrollWrapper);
+        }
+        return () => {
+            const lastRead = localStorage.getItem('quran_last_read');
+            if (lastRead) {
+                const { position, surah }: any = JSON.parse(lastRead);
+                if (surah.data.number === parseInt(itemId)) {
+                    window.scrollTo(0, position);
+                }
+            }
+            window.removeEventListener('scroll', handleScrollWrapper);
+        }
+    }, [item, itemId]);
 
     /**
      * Render layout.

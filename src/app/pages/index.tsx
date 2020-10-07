@@ -6,6 +6,7 @@ import axios from 'axios';
  */
 import UINav from '../components/nav';
 import UISearch from '../components/search';
+import UILastRead from '../components/last-read';
 import UIItems from '../components/items';
 import UIFooter from '../components/footer';
 
@@ -15,6 +16,7 @@ import UIFooter from '../components/footer';
 interface UIState {
     find: string;
     items: any;
+    lastRead: any;
 }
 export default class UIIndex extends Component<{}, UIState> {
     constructor(props: any) {
@@ -22,7 +24,8 @@ export default class UIIndex extends Component<{}, UIState> {
 
         this.state = {
             find: '',
-            items: []
+            items: [],
+            lastRead: false
         };
     }
 
@@ -30,18 +33,22 @@ export default class UIIndex extends Component<{}, UIState> {
      * Fetch data from API.
      */
     componentDidMount() {
-        const items = localStorage.getItem('quran_items');
+        const items    = localStorage.getItem('quran_items');
+        const lastRead = localStorage.getItem('quran_last_read');
         if (items) {
             this.setState({
-                items: JSON.parse(items)
+                items: JSON.parse(items),
+                lastRead: lastRead ? JSON.parse(lastRead) : false
             });
         } else {
             axios.get('https://api.quran.sutanlab.id/surah').then(responses => {
                 this.setState({
-                    items: responses.data.data
+                    items: responses.data.data,
+                    lastRead: lastRead ? JSON.parse(lastRead) : false
                 }, () => localStorage.setItem('quran_items', JSON.stringify(responses.data.data)));
             });
         }
+        window.scrollTo(0, 0);
     }
 
     /**
@@ -57,11 +64,12 @@ export default class UIIndex extends Component<{}, UIState> {
      * Render layout.
      */
     render() {
-        const { items, find }: any = this.state;
+        const { items, find, lastRead }: any = this.state;
         return (
             <>
                 <UINav isHome={true} />
                 <UISearch handleFindItem={this.handleFindItem.bind(this)} />
+                {lastRead ? <UILastRead {...lastRead} /> : null}
                 <UIItems find={find} items={items} />
                 <UIFooter />
             </>
