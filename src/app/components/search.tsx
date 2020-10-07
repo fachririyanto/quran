@@ -60,7 +60,7 @@ export default function UISearch(props: any) {
     return (
         <UI>
             <Container>
-                <Heading>Quran Digital</Heading>
+                <Heading>Digital Quran</Heading>
                 <GroupBox>
                     <Inputbox type="text" onChange={(e: any) => props.handleFindItem(e)} placeholder="Cari surat. Cth: yasin" />
                     <InputIcon src={iconSearch} />
