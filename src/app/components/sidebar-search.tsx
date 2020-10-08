@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -17,7 +17,7 @@ const UI = styled.aside`
     width: 280px;
     height: 100%;
     overflow: auto;
-    background-color: #f2f2f2;
+    background-color: #f7f7f7;
     box-shadow: 0 0 6px rgba(0,0,0,.2);
 `;
 const Header = styled.header`
@@ -74,13 +74,15 @@ const SearchIcon = styled.img`
     width: 24px;
     opacity: .6;
 `;
-const SearchResults = styled.div``;
+const SearchResults = styled.div`
+    padding: 0 16px;
+`;
 const EmptyState = styled.p`
     margin: 0 0 40px;
     text-align: center;
 `;
 const Item = styled.div`
-    padding: 12px 16px;
+    padding: 12px 0;
     width: 100%;
     border-bottom: 1px solid rgba(0,0,0,.08);
 `;
@@ -93,7 +95,7 @@ const ItemDetail = styled.div`
 `;
 const ItemTitle = styled.h3`
     margin: 0;
-    font-size: 1.45rem;
+    font-size: 1.325rem;
     font-weight: 500;
     @media (min-width: 640px) {
         font-size: 1.6rem;
@@ -102,13 +104,13 @@ const ItemTitle = styled.h3`
 const ItemMeta = styled.span`
     display: block;
     margin: 1px 0 0;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     color: #666;
     line-height: 1.3;
 `;
 const ItemArab = styled.div`
     flex-grow: 1;
-    font-size: 1.7rem;
+    font-size: 1.55rem;
     font-weight: 500;
     text-align: right;
     white-space: nowrap;
@@ -144,7 +146,7 @@ interface UIState {
 interface UIProps {
     isOpen: boolean;
 }
-export default class UISidebarSearch extends Component<any, UIState> {
+export default class UISidebarSearch extends PureComponent<any, UIState> {
     constructor(props: any) {
         super(props);
 
