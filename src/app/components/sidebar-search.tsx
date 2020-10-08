@@ -52,7 +52,8 @@ const SearchGroup = styled.div`
     border-radius: 32px;
 `;
 const SearchLabel = styled.label`
-    display: none;
+    font-size: 0;
+    line-height: 0;
 `;
 const SearchInput = styled.input`
     padding: 0 16px;

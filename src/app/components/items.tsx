@@ -59,7 +59,7 @@ const ItemNumber = styled.div`
 const ItemDetail = styled.div`
     padding: 0 16px 0 12px;
 `;
-const ItemTitle = styled.h3`
+const ItemTitle = styled.h2`
     margin: 0;
     font-size: 1.45rem;
     font-weight: 500;

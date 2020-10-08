@@ -38,7 +38,8 @@ const GroupBox = styled.div`
     }
 `;
 const InputLabel = styled.label`
-    display: none;
+    font-size: 0;
+    line-height: 0;
 `;
 const Inputbox = styled.input`
     padding: 0 16px;
