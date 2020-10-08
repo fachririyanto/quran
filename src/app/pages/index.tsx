@@ -17,6 +17,7 @@ interface UIState {
     find: string;
     items: any;
     lastRead: any;
+    isLoading: boolean;
 }
 export default class UIIndex extends Component<{}, UIState> {
     constructor(props: any) {
@@ -25,7 +26,8 @@ export default class UIIndex extends Component<{}, UIState> {
         this.state = {
             find: '',
             items: [],
-            lastRead: false
+            lastRead: false,
+            isLoading: true
         };
     }
 
@@ -38,13 +40,15 @@ export default class UIIndex extends Component<{}, UIState> {
         if (items) {
             this.setState({
                 items: JSON.parse(items),
-                lastRead: lastRead ? JSON.parse(lastRead) : false
+                lastRead: lastRead ? JSON.parse(lastRead) : false,
+                isLoading: false
             });
         } else {
             axios.get('https://api.quran.sutanlab.id/surah').then(responses => {
                 this.setState({
                     items: responses.data.data,
-                    lastRead: lastRead ? JSON.parse(lastRead) : false
+                    lastRead: lastRead ? JSON.parse(lastRead) : false,
+                    isLoading: false
                 }, () => localStorage.setItem('quran_items', JSON.stringify(responses.data.data)));
             });
         }
@@ -65,13 +69,13 @@ export default class UIIndex extends Component<{}, UIState> {
      * Render layout.
      */
     render() {
-        const { items, find, lastRead }: any = this.state;
+        const { items, find, lastRead, isLoading }: any = this.state;
         return (
             <>
                 <UINav isHome={true} />
                 <UISearch handleFindItem={this.handleFindItem.bind(this)} />
                 {lastRead ? <UILastRead {...lastRead} /> : null}
-                <UIItems find={find} items={items} />
+                <UIItems find={find} items={items} isLoading={isLoading} />
                 <UIFooter />
             </>
         );

@@ -26,3 +26,43 @@ header, nav, section, figure, aside, footer {
 .font-default {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
+
+/**
+ * Placeholder.
+ */
+@keyframes load {
+    from {
+        left: -150px;
+    }
+    to {
+        left: 100%;
+    }
+}
+.ui-placeholder {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    &::before {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        content: '';
+        background-color: #ccc;
+    }
+    &::after {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -150px;
+        z-index: 2;
+        content: '';
+        width: 150px;
+        height: 100%;
+        background: linear-gradient(to right, #ccc 0%, #bbb 50%, #ccc 100%);
+        animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+    }
+}

@@ -112,9 +112,23 @@ const ItemLink = styled.div`
 interface UIProps {
     find: string;
     items: any;
+    isLoading: boolean;
 }
 export default function UIItems(props: UIProps) {
-    const { items, find }: any = props;
+    const { items, find, isLoading }: any = props;
+
+    if (isLoading) {
+        const data: any = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        return (
+            <UI>
+                <Container>
+                    <List>
+                        {data.map((item: number) => <UIItemPlaceholder key={item} />)}
+                    </List>
+                </Container>
+            </UI>
+        );
+    }
     const UIList: any = items.filter((item: any) => {
         return find === '' ? item : item.name.transliteration.id.toLowerCase().includes(find.toLowerCase())
     }).map((item: any) => {
@@ -163,6 +177,29 @@ function UIItem(props: any) {
                 <ItemLink>
                     <Link to={"/surah/" + item.number}>{item.name.transliteration.id}</Link>
                 </ItemLink>
+            </ItemCard>
+        </Item>
+    );
+}
+
+function UIItemPlaceholder() {
+    return (
+        <Item>
+            <ItemCard className="ui-placeholder">
+                <ItemNumber>
+                    0
+                </ItemNumber>
+                <ItemDetail>
+                    <ItemTitle>
+                        Placeholder
+                    </ItemTitle>
+                    <ItemMeta>
+                        Placeholder
+                    </ItemMeta>
+                </ItemDetail>
+                <ItemArab>
+                    Placeholder
+                </ItemArab>
             </ItemCard>
         </Item>
     );

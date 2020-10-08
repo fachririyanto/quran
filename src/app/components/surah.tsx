@@ -69,8 +69,21 @@ const VerseNumber = styled.div`
  * Define components.
  */
 export default function UISurah(props: any) {
-    const { item }: any = props;
-    return (
+    const { item, isLoading }: any = props;
+    return isLoading ? (
+        <UI>
+            <Container>
+                <BlockHeader>
+                    <BlockTitleArab>&nbsp;</BlockTitleArab>
+                    <BlockTitle>Quran</BlockTitle>
+                    <BlockMeta>Loading...</BlockMeta>
+                </BlockHeader>
+                <Bismillah className="ui-placeholder">Placeholder</Bismillah>
+                <Bismillah className="ui-placeholder">Placeholder</Bismillah>
+                <Bismillah className="ui-placeholder">Placeholder</Bismillah>
+            </Container>
+        </UI>
+    ) : (
         <UI>
             <Container>
                 <BlockHeader>

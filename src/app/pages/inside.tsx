@@ -12,6 +12,7 @@ import UIFooter from '../components/footer';
 export default function UIInside() {
     const { itemId }: any = useParams();
     const [item, setItem] = useState<any>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     /**
      * Fetch data from API.
@@ -20,6 +21,7 @@ export default function UIInside() {
         async function getItem(itemId: number) {
             const results = await axios.get('https://api.quran.sutanlab.id/surah/' + itemId);
             setItem(results.data);
+            setIsLoading(false);
             localStorage.setItem('quran_last_read', JSON.stringify({
                 surah: results.data,
                 position: 0
@@ -32,6 +34,7 @@ export default function UIInside() {
                 const { surah }: any = JSON.parse(lastRead);
                 if (surah.data.number === parseInt(itemId)) {
                     setItem(surah);
+                    setIsLoading(false);
                 } else {
                     getItem(itemId);
                 }
@@ -40,6 +43,7 @@ export default function UIInside() {
             }
         }
         return () => {
+            setIsLoading(true);
             isMounted = false;
         };
     }, [itemId]);
@@ -99,7 +103,7 @@ export default function UIInside() {
     return (
         <>
             <UINav isHome={false} />
-            {item ? <UISurah item={item} /> : null}
+            <UISurah item={item} isLoading={isLoading} />
             <UIFooter />
         </>
     );
