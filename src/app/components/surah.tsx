@@ -26,7 +26,7 @@ const BlockTitle = styled.h1`
     font-weight: 500;
     line-height: 1.1;
 `;
-const BlockTitleArab = styled.h2`
+const BlockTitleArab = styled.p`
     margin: 0 0 8px;
     font-size: 2.4rem;
     font-weight: 400;
@@ -36,7 +36,7 @@ const BlockMeta = styled.span`
     display: block;
     margin: 12px 0 0;
     font-size: 1.4rem;
-    color: #777;
+    color: #666;
 `;
 const Bismillah = styled.div`
     margin-bottom: 24px;

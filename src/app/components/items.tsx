@@ -71,7 +71,7 @@ const ItemMeta = styled.span`
     display: -webkit-box;
     margin: 1px 0 0;
     font-size: 1.35rem;
-    color: #777;
+    color: #666;
     line-height: 1.3;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -161,7 +161,7 @@ function UIItem(props: any) {
                     {item.name.short}
                 </ItemArab>
                 <ItemLink>
-                    <Link to={"/surah/" + item.number}>Read More</Link>
+                    <Link to={"/surah/" + item.number}>{item.name.transliteration.id}</Link>
                 </ItemLink>
             </ItemCard>
         </Item>

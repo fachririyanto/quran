@@ -38,7 +38,7 @@ const HeaderButtonImg = styled.img`
     line-height: 0;
     vertical-align: middle;
 `;
-const SearchLabel = styled.h4`
+const SearchTitle = styled.h4`
     margin: 24px 0 8px;
     font-size: 1.5rem;
     font-weight: 500;
@@ -50,6 +50,9 @@ const SearchGroup = styled.div`
     background-color: #fff;
     border: 1px solid rgba(0,0,0,.2);
     border-radius: 32px;
+`;
+const SearchLabel = styled.label`
+    display: none;
 `;
 const SearchInput = styled.input`
     padding: 0 16px;
@@ -99,7 +102,7 @@ const ItemMeta = styled.span`
     display: block;
     margin: 1px 0 0;
     font-size: 1.35rem;
-    color: #777;
+    color: #666;
     line-height: 1.3;
 `;
 const ItemArab = styled.div`
@@ -184,13 +187,14 @@ export default class UISidebarSearch extends Component<any, UIState> {
         return (
             <UI isOpen={this.props.isOpen}>
                 <Header>
-                    <HeaderButtonClose onClick={(e: any) => this.props.handleSearch(e)}>
-                        <HeaderButtonImg src={iconClose} />
+                    <HeaderButtonClose aria-label="Button Search" onClick={(e: any) => this.props.handleSearch(e)}>
+                        <HeaderButtonImg src={iconClose} alt="Icon Search" />
                     </HeaderButtonClose>
-                    <SearchLabel>Cari Surat</SearchLabel>
+                    <SearchTitle>Cari Surat</SearchTitle>
                     <SearchGroup>
-                        <SearchInput placeholder="Cth: yasin" onChange={(e: any) => this.handleFindItem(e)} />
-                        <SearchIcon src={iconSearch} />
+                        <SearchLabel htmlFor="quran-sidebar-searchbox">Cari Surat</SearchLabel>
+                        <SearchInput id="quran-sidebar-searchbox" placeholder="Cth: yasin" onChange={(e: any) => this.handleFindItem(e)} />
+                        <SearchIcon src={iconSearch} alt="Icon Search" />
                     </SearchGroup>
                 </Header>
                 <UISearchResults items={this.state.items} find={this.state.find} {...this.props} />

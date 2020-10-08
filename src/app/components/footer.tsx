@@ -10,7 +10,7 @@ const UI = styled.footer`
 `;
 const Container = styled.div`
     padding: 20px;
-    color: #777;
+    color: #666;
     a {
         color: #333;
     }

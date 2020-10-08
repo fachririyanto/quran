@@ -10,7 +10,7 @@ const UI = styled.section`
     z-index: 2;
     margin-top: 16px;
     padding: 0 0 16px;
-    color: #777;
+    color: #666;
     text-align: center;
     @media (min-width: 680px) {
         margin-top: -24px;

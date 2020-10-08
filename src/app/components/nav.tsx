@@ -85,8 +85,8 @@ export default function UINav(props: UIProps) {
                             <Link to="/">Quran</Link>
                         </SiteName>
                         {props.isHome ? null : <SearchForm>
-                            <SearchGroup onClick={(e: any) => handleSearch(e)}>
-                                <SearchIcon src={iconSearch} />
+                            <SearchGroup aria-label="Button Search" onClick={(e: any) => handleSearch(e)}>
+                                <SearchIcon src={iconSearch} alt="Icon Search" />
                             </SearchGroup>
                         </SearchForm>}
                     </Container>

@@ -37,6 +37,9 @@ const GroupBox = styled.div`
         margin: 32px 0 0;
     }
 `;
+const InputLabel = styled.label`
+    display: none;
+`;
 const Inputbox = styled.input`
     padding: 0 16px;
     width: 100%;
@@ -62,8 +65,9 @@ export default function UISearch(props: any) {
             <Container>
                 <Heading>Digital Quran</Heading>
                 <GroupBox>
-                    <Inputbox type="text" onChange={(e: any) => props.handleFindItem(e)} placeholder="Cari surat. Cth: yasin" />
-                    <InputIcon src={iconSearch} />
+                    <InputLabel htmlFor="quran-searchbox">Cari Surat</InputLabel>
+                    <Inputbox id="quran-searchbox" type="text" onChange={(e: any) => props.handleFindItem(e)} placeholder="Cari surat. Cth: yasin" />
+                    <InputIcon src={iconSearch} alt="Icon Search" />
                 </GroupBox>
             </Container>
         </UI>
