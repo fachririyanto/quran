@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 
 /**
@@ -19,7 +19,7 @@ interface UIState {
     lastRead: any;
     isLoading: boolean;
 }
-export default class UIIndex extends Component<{}, UIState> {
+export default class UIIndex extends PureComponent<{}, UIState> {
     constructor(props: any) {
         super(props);
 

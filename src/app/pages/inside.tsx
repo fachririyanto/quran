@@ -54,10 +54,12 @@ export default function UIInside() {
     useEffect(() => {
         let scrollId: number;
         function handleScroll(e: any) {
-            localStorage.setItem('quran_last_read', JSON.stringify({
-                surah: item,
-                position: e.target.documentElement.scrollTop
-            }));
+            if (e.target.documentElement.scrollTop > 0) {
+                localStorage.setItem('quran_last_read', JSON.stringify({
+                    surah: item,
+                    position: e.target.documentElement.scrollTop
+                }));
+            }
         }
         function isFunction(functionToCheck: any) {
             return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
