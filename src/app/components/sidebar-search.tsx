@@ -247,7 +247,7 @@ function UIItem(props: any) {
                     {item.name.short}
                 </ItemArab>
                 <ItemLink>
-                    <Link to={"/surah/" + item.number} onClick={(e: any) => props.handleSearch(e)}>Read More</Link>
+                    <Link to={"/surah/" + item.number} onClick={(e: any) => props.handleSearch(e)}>{item.name.transliteration.id}</Link>
                 </ItemLink>
             </ItemCard>
         </Item>
