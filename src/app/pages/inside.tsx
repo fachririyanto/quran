@@ -95,7 +95,7 @@ export default function UIInside() {
      */
     useEffect(() => {
         if (item) {
-            document.title = item.data.name.transliteration.id + ' - Digital Quran';
+            document.title = item.data.name.transliteration.id + ' | Digital Quran';
         }
     }, [item]);
 
